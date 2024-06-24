@@ -1,0 +1,52 @@
+16. Write a PHP script to compute addition of two matrices as a form input.
+<!DOCTYPE html>
+<html>
+<head>
+<title>Matrix Addition</title>
+</head>
+<body>
+<h2>Matrix Addition</h2>
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+method="post"> Enter the elements of the first matrix:<br>
+Matrix 1, Row 1: <input type="number" name="m1r1c1" required>
+<input type="number" name="m1r1c2" required>
+Matrix 1, Row 2: <input type="number" name="m1r2c1" required>
+<input type="number" name="m1r2c2" required><br>
+<br>Enter the elements of the second matrix:<br>
+Matrix 2, Row 1: <input type="number" name="m2r1c1" required>
+<input type="number" name="m2r1c2" required>
+Matrix 2, Row 2: <input type="number" name="m2r2c1" required>
+<input type="number" name="m2r2c2" required><br>
+<br><input type="submit" value="Add Matrices">
+</form>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Retrieve elements of the first matrix
+$m1r1c1 = $_POST['m1r1c1'];
+$m1r1c2 = $_POST['m1r1c2'];
+$m1r2c1 = $_POST['m1r2c1'];
+$m1r2c2 = $_POST['m1r2c2'];
+// Retrieve elements of the second matrix
+$m2r1c1 = $_POST['m2r1c1'];
+$m2r1c2 = $_POST['m2r1c2'];
+$m2r2c1 = $_POST['m2r2c1'];
+$m2r2c2 = $_POST['m2r2c2'];
+// Compute addition of matrices
+$result = array(
+array($m1r1c1 + $m2r1c1, $m1r1c2 + $m2r1c2), array($m1r2c1 + $m2r2c1, $m1r2c2 +
+$m2r2c2) );
+// Display the result
+echo "<h3>Matrix Addition Result:</h3>";
+echo "<table border='1'>";
+foreach ($result as $row) {
+echo "<tr>";
+foreach ($row as $cell) {
+echo "<td>$cell</td>";
+}
+echo "</tr>";
+}
+echo "</table>";
+}
+?>
+</body>
+</html>
